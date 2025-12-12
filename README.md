@@ -1,4 +1,4 @@
-# Regression Graph Generator
+# RegGraph [レグラフ]
 
 統計サマリデータからインタラクティブな回帰曲線グラフを生成するStreamlitアプリ。
 
