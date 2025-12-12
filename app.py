@@ -461,7 +461,7 @@ if st.session_state.graph_generated and st.session_state.fig_uu is not None:
     st.success(f"✅ {st.session_state.brand_count}ブランドのデータを読み込みました")
 
     # グラフ表示
-    st.subheader("3️⃣ グラフプレビュー")
+    st.subheader("2️⃣ グラフプレビュー")
 
     tab1, tab2 = st.tabs(["📈 新規UUグラフ", "💰 N-CPAグラフ"])
 
@@ -473,7 +473,7 @@ if st.session_state.graph_generated and st.session_state.fig_uu is not None:
         st.plotly_chart(st.session_state.fig_ncpa, use_container_width=True)
 
     # HTMLダウンロード
-    st.subheader("4️⃣ ダウンロード")
+    st.subheader("3️⃣ ダウンロード")
 
     col_dl1, col_dl2 = st.columns(2)
 
