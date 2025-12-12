@@ -55,32 +55,40 @@ data_input = st.text_area(
     help="スプレッドシートからコピーしたデータをそのまま貼り付けてください"
 )
 
-# グラフ設定
-st.subheader("2️⃣ グラフ設定")
-col1, col2 = st.columns(2)
+# グラフ設定（デフォルト値）
+graph_type = "対数回帰（サチュレーションあり）"
+show_extrapolation = True
+extrapolation_ratio = 1.5
+graph_title = "ブランド別 SA広告費のサチュレーション"
 
-with col1:
-    graph_type = st.selectbox(
-        "表示する回帰式",
-        ["対数回帰（サチュレーションあり）", "線形回帰（サチュレーションなし）", "両方表示"]
-    )
+# 詳細設定（折りたたみ）
+with st.expander("⚙️ Advanced Settings", expanded=False):
+    st.caption("※ 通常は変更不要です")
 
-with col2:
-    show_extrapolation = st.checkbox("外挿範囲を表示（点線）", value=True)
+    col1, col2 = st.columns(2)
 
-col3, col4 = st.columns(2)
-with col3:
-    extrapolation_ratio = st.slider(
-        "外挿範囲の拡張倍率",
-        min_value=1.0,
-        max_value=3.0,
-        value=1.5,
-        step=0.1,
-        help="データ最大値の何倍まで外挿するか（1.5 = 50%先まで）"
-    )
+    with col1:
+        graph_type = st.selectbox(
+            "表示する回帰式",
+            ["対数回帰（サチュレーションあり）", "線形回帰（サチュレーションなし）", "両方表示"]
+        )
 
-# グラフタイトル
-graph_title = st.text_input("グラフタイトル", value="ブランド別 SA広告費のサチュレーション")
+    with col2:
+        show_extrapolation = st.checkbox("外挿範囲を表示（点線）", value=True)
+
+    col3, col4 = st.columns(2)
+    with col3:
+        extrapolation_ratio = st.slider(
+            "外挿範囲の拡張倍率",
+            min_value=1.0,
+            max_value=3.0,
+            value=1.5,
+            step=0.1,
+            help="データ最大値の何倍まで外挿するか（1.5 = 50%先まで）"
+        )
+
+    # グラフタイトル
+    graph_title = st.text_input("グラフタイトル", value="ブランド別 SA広告費のサチュレーション")
 
 
 def parse_log_equation(eq_str):
